@@ -41,7 +41,10 @@ void Game::PlaceFood() {
   }
 }
 
-void Game::Update() { // todo move update functions in object functions
+void Game::Update() {
+  // todo create parent class "game object"
+  // todo move collision check to "game object"
+  // todo move update functions to "game object"
   if (!snake.alive) return;
 
   snake.Update();
