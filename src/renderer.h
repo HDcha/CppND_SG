@@ -18,10 +18,10 @@ class Renderer {
   SDL_Window *sdl_window;
   SDL_Renderer *sdl_renderer;
 
-  const std::size_t screen_width;
-  const std::size_t screen_height;
-  const std::size_t grid_width;
-  const std::size_t grid_height;
+  const size_t screen_width;
+  const size_t screen_height;
+  const size_t grid_width;
+  const size_t grid_height;
 };
 
 #endif
