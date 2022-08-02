@@ -14,8 +14,8 @@ class Snake {
   Snake(int grid_width, int grid_height)
       : grid_width(grid_width),
         grid_height(grid_height),
-        head_x(grid_width / 2),
-        head_y(grid_height / 2) {}
+        head_x((float) grid_width / 2),
+        head_y((float) grid_height / 2) {}
 
   void Update();
 
@@ -27,8 +27,8 @@ class Snake {
   float speed{0.1f};
   int size{1};
   bool alive{true};
-  float head_x;
-  float head_y;
+  float head_x; // todo make int
+  float head_y; // todo make int
   std::vector<SDL_Point> body;
 
  private:

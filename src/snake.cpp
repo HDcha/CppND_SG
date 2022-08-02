@@ -1,6 +1,5 @@
 #include "snake.h"
 #include <cmath>
-#include <iostream>
 
 void Snake::Update() {
   SDL_Point prev_cell{
@@ -11,7 +10,7 @@ void Snake::Update() {
       static_cast<int>(head_x),
       static_cast<int>(head_y)}; // Capture the head's cell after updating.
 
-  // Update all of the body vector items if the snake head has moved to a new
+  // Update all the body vector items if the snake head has moved to a new
   // cell.
   if (current_cell.x != prev_cell.x || current_cell.y != prev_cell.y) {
     UpdateBody(current_cell, prev_cell);
@@ -38,8 +37,8 @@ void Snake::UpdateHead() {
   }
 
   // Wrap the Snake around to the beginning if going off of the screen.
-  head_x = fmod(head_x + grid_width, grid_width);
-  head_y = fmod(head_y + grid_height, grid_height);
+  head_x = fmod(head_x + grid_width, grid_width); // todo make int
+  head_y = fmod(head_y + grid_height, grid_height); // todo make int
 }
 
 void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
@@ -69,7 +68,7 @@ bool Snake::SnakeCell(int x, int y) {
   if (x == static_cast<int>(head_x) && y == static_cast<int>(head_y)) {
     return true;
   }
-  for (auto const &item : body) {
+  for (auto const &item : body) { // todo use any_of
     if (x == item.x && y == item.y) {
       return true;
     }
