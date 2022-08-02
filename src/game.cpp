@@ -1,5 +1,4 @@
 #include "game.h"
-#include "SDL.h"
 #include <iostream>
 
 Game::Game(size_t grid_width, size_t grid_height)
