@@ -16,6 +16,7 @@ class Game {
   [[nodiscard]] int GetSize() const;
 
  private:
+  // todo change to vector of objects
   Snake snake;
   SDL_Point food;
 
