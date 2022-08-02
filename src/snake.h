@@ -20,15 +20,15 @@ class Snake {
   void Update();
 
   void GrowBody();
-  bool SnakeCell(int x, int y);
+  [[nodiscard]] bool SnakeCell(int x, int y) const;
 
   Direction direction = Direction::kUp;
 
   float speed{0.1f};
   int size{1};
   bool alive{true};
-  float head_x; // todo make int
-  float head_y; // todo make int
+  float head_x;
+  float head_y;
   std::vector<SDL_Point> body;
 
  private:
