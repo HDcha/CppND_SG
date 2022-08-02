@@ -3,8 +3,10 @@
 
 #include "SDL.h"
 #include "controller.h"
+#include "gui_object.h"
 #include "renderer.h"
 #include "snake.h"
+#include <memory>
 #include <random>
 
 class Game {
@@ -16,8 +18,8 @@ class Game {
   [[nodiscard]] int GetSize() const;
 
  private:
-  // todo change to vector of objects
-  Snake snake;
+  std::vector<std::unique_ptr<GuiObject>> gui_objects;
+  Snake *snake;
   SDL_Point food;
 
   std::random_device dev;

@@ -5,7 +5,7 @@
 #include "gui_object.h"
 #include <vector>
 
-class Snake : private GuiObject {
+class Snake : public GuiObject {
  public:
   enum class Direction { kUp,
                          kDown,
@@ -18,7 +18,7 @@ class Snake : private GuiObject {
         head_x((float) grid_width / 2),
         head_y((float) grid_height / 2) {}
 
-  void update() override;
+  void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override;
 
   void GrowBody();
   [[nodiscard]] bool SnakeCell(int x, int y) const;
@@ -30,11 +30,10 @@ class Snake : private GuiObject {
   bool alive{true};
   float head_x;
   float head_y;
-  std::vector<SDL_Point> body;
 
  private:
   void UpdateHead();
-  void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
+  void UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell, std::vector<std::unique_ptr<GuiObject>> *gui_objects);
 
   bool growing{false};
   int grid_width;

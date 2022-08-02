@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cmath>
 
-void Snake::update() {
+void Snake::update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) {
   SDL_Point prev_cell{
       static_cast<int>(head_x),
       static_cast<int>(head_y)}; // We first capture the head's cell before updating.
@@ -11,10 +11,10 @@ void Snake::update() {
       static_cast<int>(head_x),
       static_cast<int>(head_y)}; // Capture the head's cell after updating.
 
-  // update all the body vector items if the snake head has moved to a new
+  // update all the occupied_squares vector items if the snake head has moved to a new
   // cell.
   if (current_cell.x != prev_cell.x || current_cell.y != prev_cell.y) {
-    UpdateBody(current_cell, prev_cell);
+    UpdateBody(current_cell, prev_cell, gui_objects);
   }
 }
 
@@ -42,22 +42,25 @@ void Snake::UpdateHead() {
   head_y = (float) fmod(head_y + (float) grid_height, grid_height);
 }
 
-void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
+void Snake::UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell, std::vector<std::unique_ptr<GuiObject>> *gui_objects) {
+  // todo add head to occupied_squares
   // Add previous head location to vector
-  body.push_back(prev_head_cell);
+  occupied_squares.push_back(prev_head_cell);
 
   if (!growing) {
     // Remove the tail from the vector.
-    body.erase(body.begin());
+    occupied_squares.erase(occupied_squares.begin());
   } else {
     growing = false;
     size++;
   }
 
   // Check if the snake has died.
-  for (auto const &item : body) {
-    if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
-      alive = false;
+  for (const auto &gui_object : *gui_objects) {
+    for (auto const &item : gui_object->occupied_squares) {
+      if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
+        alive = false;
+      }
     }
   }
 }
@@ -69,5 +72,5 @@ bool Snake::SnakeCell(int x, int y) const {
   if (x == static_cast<int>(head_x) && y == static_cast<int>(head_y)) {
     return true;
   }
-  return std::any_of(body.cbegin(), body.cend(), [x, y](auto item) { return item.x == x && item.y == y; });
+  return std::any_of(occupied_squares.cbegin(), occupied_squares.cend(), [x, y](auto item) { return item.x == x && item.y == y; });
 }
