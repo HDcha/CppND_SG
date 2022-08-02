@@ -7,6 +7,7 @@ Game::Game(size_t grid_width, size_t grid_height)
       food(),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)) {
+  
   PlaceFood();
 }
 
@@ -17,7 +18,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, size_t target_f
   while (running) {
     frame.start();
 
-    // Input, Update, Render - the main game loop.
+    // Input, update, Render - the main game loop.
     Controller::HandleInput(running, snake);
     Update();
     renderer.Render(snake, food);
@@ -47,7 +48,7 @@ void Game::Update() {
   // todo move update functions to "game object"
   if (!snake.alive) return;
 
-  snake.Update();
+  snake.update();
 
   // Check if there's food over here
   if (food.x == (int) (snake.head_x) && food.y == (int) (snake.head_y)) {

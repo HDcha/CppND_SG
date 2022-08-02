@@ -2,9 +2,10 @@
 #define SNAKE_H
 
 #include "SDL.h"
+#include "gui_object.h"
 #include <vector>
 
-class Snake {
+class Snake : private GuiObject {
  public:
   enum class Direction { kUp,
                          kDown,
@@ -17,7 +18,7 @@ class Snake {
         head_x((float) grid_width / 2),
         head_y((float) grid_height / 2) {}
 
-  void Update();
+  void update() override;
 
   void GrowBody();
   [[nodiscard]] bool SnakeCell(int x, int y) const;

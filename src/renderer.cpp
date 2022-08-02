@@ -71,7 +71,7 @@ void Renderer::Render(Snake const& snake, SDL_Point const &food) {
   }
   SDL_RenderFillRect(sdl_renderer, &block);
 
-  // Update Screen
+  // update Screen
   SDL_RenderPresent(sdl_renderer);
 }
 
