@@ -1,11 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <random>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
+#include <random>
 
 class Game {
  public:
