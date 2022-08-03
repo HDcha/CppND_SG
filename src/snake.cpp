@@ -55,11 +55,16 @@ void Snake::UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev
     size++;
   }
 
-  // Check if the snake has died.
+  // Check if the snake has collided.
   for (const auto &gui_object : *gui_objects) {
     for (auto const &item : gui_object->occupied_squares) {
       if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
-        alive = false;
+        if (auto food_ptr = dynamic_cast<FoodObject *>(gui_object.get()); food_ptr) {
+          growing = true;
+          food_ptr->randomize_position();
+        } else {
+          alive = false;
+        }
       }
     }
   }

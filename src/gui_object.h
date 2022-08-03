@@ -18,6 +18,11 @@ class [[maybe_unused]] FoodObject : public GuiObject { //CHA
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
+
+ public:
+  explicit FoodObject()
+      : engine(dev()) { randomize_position(); }
+  void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override {} // food is inactive
   void randomize_position() {
     int x, y;
     while (true) {
@@ -30,11 +35,6 @@ class [[maybe_unused]] FoodObject : public GuiObject { //CHA
       return;
     }
   }
-
- public:
-  explicit FoodObject()
-      : engine(dev()) { randomize_position(); }
-  void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override {} // food is inactive
 };
 
 #endif //SDL2TEST_GUI_OBJECT_H

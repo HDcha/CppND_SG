@@ -8,9 +8,15 @@ Game::Game(size_t grid_width, size_t grid_height)
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)) {
   gui_objects.emplace_back(std::make_unique<FoodObject>()); // todo actually use FoodObject
+
+  // add snake
   auto snake_ptr = std::make_unique<Snake>((int) grid_width, (int) grid_height);
   snake = snake_ptr.get();
   gui_objects.emplace_back(std::move(snake_ptr));
+
+  // add food
+  gui_objects.emplace_back(std::make_unique<FoodObject>());
+
   PlaceFood();
 }
 
