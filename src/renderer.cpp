@@ -48,10 +48,13 @@ void Renderer::Render(const std::vector<std::unique_ptr<GuiObject>> &gui_objects
   SDL_RenderClear(sdl_renderer);
 
   for (const auto &u_ptr : gui_objects) {
-    if (auto ptr_snake = dynamic_cast<Snake *>(u_ptr.get()); ptr_snake != nullptr)
+    auto ptr = u_ptr.get();
+    if (auto ptr_snake = dynamic_cast<Snake *>(ptr); ptr_snake != nullptr)
       Render(ptr_snake);
-    else if (auto ptr_food = dynamic_cast<Food *>(u_ptr.get()); ptr_food != nullptr)
+    else if (auto ptr_food = dynamic_cast<Food *>(ptr); ptr_food != nullptr)
       Render(ptr_food);
+    else // render as obstacle
+      Render(ptr);
   }
 
   // update Screen
@@ -85,6 +88,16 @@ void Renderer::Render(const Food *food) {
   block.x = food->occupied_squares[0].x * block.w;
   block.y = food->occupied_squares[0].y * block.h;
   SDL_RenderFillRect(sdl_renderer, &block);
+}
+
+// Render obstacle
+void Renderer::Render(const GuiObject *gui_object) {
+  SDL_SetRenderDrawColor(sdl_renderer, 0x44, 0x44, 0x44, 0xFF);
+  for (const auto &square : gui_object->occupied_squares) {
+    block.x = square.x * block.w;
+    block.y = square.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
 }
 
 void Renderer::UpdateWindowTitle(int score, int fps) {

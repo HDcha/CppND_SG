@@ -14,6 +14,7 @@ class Renderer {
   void Render(const std::vector<std::unique_ptr<GuiObject>> &gui_objects);
   void Render(const Snake *);
   void Render(const Food *);
+  void Render(const GuiObject *gui_object);
   void UpdateWindowTitle(int score, int fps);
 
  private:

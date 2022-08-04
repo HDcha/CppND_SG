@@ -13,7 +13,7 @@ class GuiObject { // CHA
   std::vector<SDL_Point> occupied_squares;
 };
 
-class [[maybe_unused]] Food : public GuiObject { //CHA
+class Food : public GuiObject { //CHA
   std::random_device dev;
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;
@@ -35,6 +35,20 @@ class [[maybe_unused]] Food : public GuiObject { //CHA
       // food.
       occupied_squares = {{x, y}};
       return;
+    }
+  }
+};
+
+class Barrier : public GuiObject {
+  ;
+  void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override{}; // wall is passive
+ public:
+  Barrier(const int &x, const int &y, const int height, const int width) {
+    occupied_squares = {};
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        occupied_squares.emplace_back(SDL_Point{x + i, y + j});
+      }
     }
   }
 };

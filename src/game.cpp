@@ -4,13 +4,16 @@
 
 Game::Game(size_t grid_width, size_t grid_height) {
 
+  // add food
+  gui_objects.emplace_back(std::make_unique<Food>(grid_width, grid_height));
+
+  // add barrier
+  gui_objects.emplace_back(std::make_unique<Barrier>(0, 5, 1, 5));
+
   // add snake
   auto snake_ptr = std::make_unique<Snake>((int) grid_width, (int) grid_height);
   snake = snake_ptr.get();
   gui_objects.emplace_back(std::move(snake_ptr));
-
-  // add food
-  gui_objects.emplace_back(std::make_unique<Food>(grid_width, grid_height));
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer, size_t target_frame_duration) {
