@@ -24,7 +24,6 @@ class Snake : public GuiObject {
   [[nodiscard]] bool SnakeCell(int x, int y) const;
 
   Direction direction = Direction::kUp;
-
   float speed{0.1f};
   int size{1};
   bool alive{true};
