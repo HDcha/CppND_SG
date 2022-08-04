@@ -13,15 +13,17 @@ class GuiObject { // CHA
   std::vector<SDL_Point> occupied_squares;
 };
 
-class [[maybe_unused]] FoodObject : public GuiObject { //CHA
+class [[maybe_unused]] Food : public GuiObject { //CHA
   std::random_device dev;
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
 
  public:
-  explicit FoodObject()
-      : engine(dev()) { randomize_position(); }
+  explicit Food(const size_t &grid_width, const size_t &grid_height)
+      : engine(dev()),
+        random_w(0, static_cast<int>(grid_width - 1)),
+        random_h(0, static_cast<int>(grid_height - 1)) { randomize_position(); }
   void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override {} // food is inactive
   void randomize_position() {
     int x, y;

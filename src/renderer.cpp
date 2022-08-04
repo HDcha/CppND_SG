@@ -38,8 +38,8 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const &snake, SDL_Point const &food) { // todo render all obj
-  SDL_Rect block;
+void Renderer::Render(const std::vector<std::unique_ptr<GuiObject>> &gui_objects) {
+
   block.w = (int) (screen_width / grid_width);
   block.h = (int) (screen_height / grid_height);
 
@@ -47,32 +47,44 @@ void Renderer::Render(Snake const &snake, SDL_Point const &food) { // todo rende
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-  // Render food
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
-  block.x = food.x * block.w;
-  block.y = food.y * block.h;
-  SDL_RenderFillRect(sdl_renderer, &block);
+  for (const auto &u_ptr : gui_objects) {
+    if (auto ptr_snake = dynamic_cast<Snake *>(u_ptr.get()); ptr_snake != nullptr)
+      Render(ptr_snake);
+    else if (auto ptr_food = dynamic_cast<Food *>(u_ptr.get()); ptr_food != nullptr)
+      Render(ptr_food);
+  }
 
-  // Render snake's occupied_squares
+  // update Screen
+  SDL_RenderPresent(sdl_renderer);
+}
+
+void Renderer::Render(const Snake *snake) {
+
+  // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-  for (SDL_Point const &point : snake.occupied_squares) {
+  for (SDL_Point const &point : snake->occupied_squares) {
     block.x = point.x * block.w;
     block.y = point.y * block.h;
     SDL_RenderFillRect(sdl_renderer, &block);
   }
 
   // Render snake's head
-  block.x = static_cast<int>(snake.head_x) * block.w;
-  block.y = static_cast<int>(snake.head_y) * block.h;
-  if (snake.alive) {
+  block.x = static_cast<int>(snake->head_x) * block.w;
+  block.y = static_cast<int>(snake->head_y) * block.h;
+  if (snake->alive) {
     SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
   } else {
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
   SDL_RenderFillRect(sdl_renderer, &block);
+}
 
-  // update Screen
-  SDL_RenderPresent(sdl_renderer);
+void Renderer::Render(const Food *food) {
+  // Render food
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
+  block.x = food->occupied_squares[0].x * block.w;
+  block.y = food->occupied_squares[0].y * block.h;
+  SDL_RenderFillRect(sdl_renderer, &block);
 }
 
 void Renderer::UpdateWindowTitle(int score, int fps) {

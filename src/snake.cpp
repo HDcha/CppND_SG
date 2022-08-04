@@ -59,23 +59,15 @@ void Snake::UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev
   for (const auto &gui_object : *gui_objects) {
     for (auto const &item : gui_object->occupied_squares) {
       if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
-        if (auto food_ptr = dynamic_cast<FoodObject *>(gui_object.get()); food_ptr) {
+        if (auto food_ptr = dynamic_cast<Food *>(gui_object.get()); food_ptr) {
           growing = true;
+          score++;
+          speed += 0.02;
           food_ptr->randomize_position();
-        } else {
-          alive = false;
+          continue;
         }
+        alive = false;
       }
     }
   }
-}
-
-void Snake::GrowBody() { growing = true; }
-
-// Inefficient method to check if cell is occupied by snake.
-bool Snake::SnakeCell(int x, int y) const {
-  if (x == static_cast<int>(head_x) && y == static_cast<int>(head_y)) {
-    return true;
-  }
-  return std::any_of(occupied_squares.cbegin(), occupied_squares.cend(), [x, y](auto item) { return item.x == x && item.y == y; });
 }

@@ -16,12 +16,10 @@ class Snake : public GuiObject {
       : grid_width(grid_width),
         grid_height(grid_height),
         head_x((float) grid_width / 2),
-        head_y((float) grid_height / 2) {}
+        head_y((float) grid_height / 2),
+        score(0) {}
 
   void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override;
-
-  void GrowBody();
-  [[nodiscard]] bool SnakeCell(int x, int y) const;
 
   Direction direction = Direction::kUp;
   float speed{0.1f};
@@ -29,6 +27,7 @@ class Snake : public GuiObject {
   bool alive{true};
   float head_x;
   float head_y;
+  int score{};
 
  private:
   void UpdateHead();
