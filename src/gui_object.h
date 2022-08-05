@@ -14,14 +14,12 @@ class GuiObject { // CHA
   virtual ~GuiObject() = default;
   virtual void update() = 0;
   std::vector<SDL_Point> occupied_squares;
+
+ protected:
   const v_p_gui_objects *gui_objects;
 };
 
 class Food : public GuiObject { //CHA
-  std::random_device dev;
-  std::mt19937 engine;
-  std::uniform_int_distribution<int> random_w;
-  std::uniform_int_distribution<int> random_h;
 
  public:
   explicit Food(const size_t &grid_width, const size_t &grid_height, v_p_gui_objects *gui_objects)
@@ -42,6 +40,12 @@ class Food : public GuiObject { //CHA
       return;
     }
   }
+
+ private:
+  std::random_device dev;
+  std::mt19937 engine;
+  std::uniform_int_distribution<int> random_w;
+  std::uniform_int_distribution<int> random_h;
 };
 
 class Barrier : public GuiObject {

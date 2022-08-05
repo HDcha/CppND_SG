@@ -23,18 +23,20 @@ class Snake : public GuiObject {
   void update() override;
 
   Direction direction = Direction::kUp;
-  float speed{0.1f};
-  int size{1};
   bool alive{true};
-  float head_x;
+  float head_x; // todo should become private
   float head_y;
-  int score{};
+  [[nodiscard]] int get_score() const { return score; };
+  [[nodiscard]] int get_size() const { return size; }
 
  private:
   void UpdateHead();
   void UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell);
   void collision_check(const SDL_Point &new_head_position);
 
+  int score{};
+  int size{1};
+  float speed{0.1f};
   bool growing{false};
   int grid_width;
   int grid_height;

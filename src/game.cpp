@@ -37,8 +37,8 @@ void Game::Update() {
   snake->update();
 }
 
-int Game::GetScore() const { return snake->score; }
-int Game::GetSize() const { return snake->size; }
+int Game::GetScore() const { return snake->get_score(); }
+int Game::GetSize() const { return snake->get_size(); }
 void Game::add_barriers_cage(const size_t &grid_width, const size_t &grid_height) {
   gui_objects.emplace_back(std::make_unique<Barrier>(0, 0, 1, grid_width, &this->gui_objects));
   gui_objects.emplace_back(std::make_unique<Barrier>(0, 0, grid_height, 1, &this->gui_objects));
