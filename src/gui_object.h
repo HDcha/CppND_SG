@@ -17,13 +17,13 @@ class GuiObject { // CHA
 
  protected:
   const v_p_gui_objects *gui_objects;
-  [[nodiscard]] bool is_occupied(const int &x, const int &y) const {
+  [[nodiscard]] GuiObject *is_occupied(const int &x, const int &y) const {
     for (const auto &gui_object : *gui_objects) {
       for (const auto &square : gui_object->occupied_squares) {
-        if (square.x == x && square.y == y) return true;
+        if (square.x == x && square.y == y) return gui_object.get();
       }
     }
-    return false;
+    return nullptr;
   }
 };
 

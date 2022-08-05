@@ -57,18 +57,14 @@ void Snake::UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev
   }
 }
 void Snake::collision_check(const SDL_Point &current_head_cell) {
-  for (const auto &gui_object : *gui_objects) {
-    for (auto const &item : gui_object->occupied_squares) {
-      if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
-        if (auto food_ptr = dynamic_cast<Food *>(gui_object.get()); food_ptr) {
-          growing = true;
-          score++;
-          speed += 0.02;
-          food_ptr->randomize_position();
-          continue;
-        }
-        alive = false;
-      }
+  if (auto const &gui_object = is_occupied(current_head_cell.x, current_head_cell.y); gui_object) {
+    if (auto food_ptr = dynamic_cast<Food *>(gui_object); food_ptr) {
+      growing = true;
+      score++;
+      speed += 0.02;
+      food_ptr->randomize_position();
+    } else {
+      alive = false;
     }
   }
 }
