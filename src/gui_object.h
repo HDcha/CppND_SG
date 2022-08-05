@@ -17,6 +17,14 @@ class GuiObject { // CHA
 
  protected:
   const v_p_gui_objects *gui_objects;
+  [[nodiscard]] bool is_occupied(const int &x, const int &y) const {
+    for (const auto &gui_object : *gui_objects) {
+      for (const auto &square : gui_object->occupied_squares) {
+        if (square.x == x && square.y == y) return true;
+      }
+    }
+    return false;
+  }
 };
 
 class Food : public GuiObject { //CHA
@@ -30,15 +38,11 @@ class Food : public GuiObject { //CHA
   void update() override {} // food is inactive
   void randomize_position() {
     int x, y;
-    while (true) {
-      // todo check collision
+    do {
       x = random_w(engine);
       y = random_h(engine);
-      // Check that the location is not occupied by a snake item before placing
-      // food.
-      occupied_squares = {{x, y}};
-      return;
-    }
+    } while (is_occupied(x, y));
+    occupied_squares = {{x, y}};
   }
 
  private:
