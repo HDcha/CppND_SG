@@ -11,6 +11,7 @@ class GuiObject { // CHA
 
  public:
   explicit GuiObject(v_p_gui_objects *gui_objects) : gui_objects(gui_objects){};
+  virtual ~GuiObject() = default;
   virtual void update() = 0;
   std::vector<SDL_Point> occupied_squares;
   const v_p_gui_objects *gui_objects;

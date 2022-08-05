@@ -22,6 +22,7 @@ class Game {
   Snake *snake;
 
   void Update();
+  void add_barriers_cage(const size_t &grid_width, const size_t &grid_height);
 };
 
 class Frame { //CHA
