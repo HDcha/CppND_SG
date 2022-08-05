@@ -12,8 +12,7 @@
 class Game {
  public:
   Game(size_t grid_width, size_t grid_height);
-  void Run(Controller const &controller, Renderer &renderer,
-           size_t target_frame_duration);
+  void Run(Renderer &&renderer, size_t target_frame_duration);
   [[nodiscard]] int GetScore() const;
   [[nodiscard]] int GetSize() const;
 

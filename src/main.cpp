@@ -1,4 +1,3 @@
-#include "controller.h"
 #include "game.h"
 #include "renderer.h"
 #include <iostream>
@@ -11,10 +10,9 @@ int main() {
   constexpr size_t kGridWidth{32};
   constexpr size_t kGridHeight{32};
 
-  Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight); // todo make shared pointer
-  Controller controller;
+  Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Game game(kGridWidth, kGridHeight);
-  game.Run(controller, renderer, kMsPerFrame);
+  game.Run(std::move(renderer), kMsPerFrame);
   std::cout << "Game has terminated successfully!\n";
   std::cout << "Score: " << game.GetScore() << "\n";
   std::cout << "Size: " << game.GetSize() << "\n";

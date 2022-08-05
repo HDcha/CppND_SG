@@ -15,7 +15,7 @@ Game::Game(size_t grid_width, size_t grid_height) {
   gui_objects.emplace_back(std::move(snake_ptr));
 }
 
-void Game::Run(Controller const &controller, Renderer &renderer, size_t target_frame_duration) {
+void Game::Run(Renderer &&renderer, size_t target_frame_duration) {
   bool running = true;
   Frame frame(this, target_frame_duration, renderer);
 
