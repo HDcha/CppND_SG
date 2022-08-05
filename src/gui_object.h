@@ -49,8 +49,6 @@ class Food : public GuiObject { //CHA
 };
 
 class Barrier : public GuiObject {
-  ;
-  void update() override{}; // wall is passive
  public:
   Barrier(const int &x, const int &y, const int height, const int width, v_p_gui_objects *gui_objects) : GuiObject(gui_objects) {
     occupied_squares = {};
@@ -60,6 +58,7 @@ class Barrier : public GuiObject {
       }
     }
   }
+  void update() override{}; // wall is passive
 };
 
 #endif //SDL2TEST_GUI_OBJECT_H

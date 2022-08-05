@@ -25,16 +25,8 @@ class Game {
 };
 
 class Frame { //CHA
- public:
-  Uint32 title_timestamp = SDL_GetTicks();
-  Uint32 frame_start{}; //todo refactor to class Frame with start/finish
-  Uint32 frame_end{};
-  Uint32 frame_duration{};
-  int frame_count = 0;
-  size_t target_frame_duration;
-  Game *game;
-  Renderer renderer;
 
+ public:
   Frame(Game *game, const size_t &target_frame_duration, Renderer &renderer)
       : game(game), target_frame_duration(target_frame_duration), renderer(renderer){};
   void start() { frame_start = SDL_GetTicks(); };
@@ -59,6 +51,16 @@ class Frame { //CHA
       SDL_Delay(target_frame_duration - frame_duration);
     }
   }
+
+ private:
+  Uint32 title_timestamp = SDL_GetTicks();
+  Uint32 frame_start{}; //todo refactor to class Frame with start/finish
+  Uint32 frame_end{};
+  Uint32 frame_duration{};
+  int frame_count = 0;
+  size_t target_frame_duration;
+  Game *game;
+  Renderer renderer;
 };
 
 #endif

@@ -6,6 +6,7 @@
 #include <vector>
 
 class Snake : public GuiObject {
+
  public:
   enum class Direction { kUp,
                          kDown,
