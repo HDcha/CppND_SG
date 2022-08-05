@@ -11,7 +11,7 @@ class Renderer {
            const size_t &grid_width, const size_t &grid_height);
   ~Renderer();
 
-  void Render(const std::vector<std::unique_ptr<GuiObject>> &gui_objects);
+  void Render(const v_p_gui_objects &gui_objects);
   void Render(const Snake *);
   void Render(const Food *);
   void Render(const GuiObject *gui_object);

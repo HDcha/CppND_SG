@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(const std::vector<std::unique_ptr<GuiObject>> &gui_objects) {
+void Renderer::Render(const v_p_gui_objects &gui_objects) {
 
   block.w = (int) (screen_width / grid_width);
   block.h = (int) (screen_height / grid_height);

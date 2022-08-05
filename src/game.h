@@ -18,7 +18,7 @@ class Game {
   [[nodiscard]] int GetSize() const;
 
  private:
-  std::vector<std::unique_ptr<GuiObject>> gui_objects;
+  v_p_gui_objects gui_objects;
   Snake *snake;
 
   void Update();

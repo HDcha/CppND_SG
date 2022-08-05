@@ -12,14 +12,15 @@ class Snake : public GuiObject {
                          kLeft,
                          kRight };
 
-  Snake(int grid_width, int grid_height)
+  Snake(int grid_width, int grid_height, v_p_gui_objects *gui_objects)
       : grid_width(grid_width),
         grid_height(grid_height),
         head_x((float) grid_width / 2),
         head_y((float) grid_height / 2),
-        score(0) {}
+        score(0),
+        GuiObject(gui_objects) {}
 
-  void update(std::vector<std::unique_ptr<GuiObject>> *gui_objects) override;
+  void update() override;
 
   Direction direction = Direction::kUp;
   float speed{0.1f};
@@ -31,7 +32,8 @@ class Snake : public GuiObject {
 
  private:
   void UpdateHead();
-  void UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell, std::vector<std::unique_ptr<GuiObject>> *gui_objects);
+  void UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell);
+  void collision_check(const SDL_Point &new_head_position);
 
   bool growing{false};
   int grid_width;

@@ -3,15 +3,14 @@
 #include <iostream>
 
 Game::Game(size_t grid_width, size_t grid_height) {
+  // add barrier
+  gui_objects.emplace_back(std::make_unique<Barrier>(0, 5, 1, 5, &this->gui_objects));
 
   // add food
-  gui_objects.emplace_back(std::make_unique<Food>(grid_width, grid_height));
+  gui_objects.emplace_back(std::make_unique<Food>(grid_width, grid_height, &this->gui_objects));
 
-  // add barrier
-  gui_objects.emplace_back(std::make_unique<Barrier>(0, 5, 1, 5));
-
-  // add snake
-  auto snake_ptr = std::make_unique<Snake>((int) grid_width, (int) grid_height);
+  // add snake last, so it is rendered on top of everything else
+  auto snake_ptr = std::make_unique<Snake>((int) grid_width, (int) grid_height, &this->gui_objects);
   snake = snake_ptr.get();
   gui_objects.emplace_back(std::move(snake_ptr));
 }
@@ -36,7 +35,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, size_t target_f
 void Game::Update() {
   if (!snake->alive) return;
 
-  snake->update(&gui_objects);
+  snake->update();
 }
 
 int Game::GetScore() const { return snake->score; }
