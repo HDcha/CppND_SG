@@ -3,19 +3,16 @@
 #include <cmath>
 
 void Snake::update() {
-  SDL_Point prev_cell{
-      static_cast<int>(head_x),
-      static_cast<int>(head_y)}; // We first capture the head's cell before updating.
+  SDL_Point prev_cell{(int) (head_x), (int) (head_y)}; // We first capture the head's cell before updating.
   UpdateHead();
-  SDL_Point current_cell{
-      static_cast<int>(head_x),
-      static_cast<int>(head_y)}; // Capture the head's cell after updating.
+  SDL_Point current_cell{(int) (head_x), (int) (head_y)}; // Capture the head's cell after updating.
 
-  // update all the occupied_squares vector items if the snake head has moved to a new
+  // update the occupied_squares vector items if the snake head has moved to a new
   // cell.
   if (current_cell.x != prev_cell.x || current_cell.y != prev_cell.y) {
-    UpdateBody(current_cell, prev_cell);
+    update_tail();
     collision_check(current_cell);
+    move_head(current_cell);
   }
 }
 
@@ -42,12 +39,7 @@ void Snake::UpdateHead() {
   head_x = (float) fmod(head_x + (float) grid_width, grid_width);
   head_y = (float) fmod(head_y + (float) grid_height, grid_height);
 }
-
-void Snake::UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell) {
-  // todo add head to occupied_squares
-  // Add previous head location to vector
-  occupied_squares.push_back(prev_head_cell);
-
+void Snake::update_tail() {
   if (!growing) {
     // Remove the tail from the vector.
     occupied_squares.erase(occupied_squares.begin());
@@ -55,6 +47,10 @@ void Snake::UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev
     growing = false;
     size++;
   }
+}
+
+void Snake::move_head(const SDL_Point &current_head_cell) {
+  occupied_squares.push_back(current_head_cell);
 }
 void Snake::collision_check(const SDL_Point &current_head_cell) {
   if (auto const &gui_object = is_occupied(current_head_cell.x, current_head_cell.y); gui_object) {

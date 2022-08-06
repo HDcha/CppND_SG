@@ -54,7 +54,7 @@ class Frame { //CHA
 
  private:
   Uint32 title_timestamp = SDL_GetTicks();
-  Uint32 frame_start{}; //todo refactor to class Frame with start/finish
+  Uint32 frame_start{};
   Uint32 frame_end{};
   Uint32 frame_duration{};
   int frame_count = 0;

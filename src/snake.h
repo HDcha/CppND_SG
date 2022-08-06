@@ -19,7 +19,9 @@ class Snake : public GuiObject {
         head_x((float) grid_width / 2),
         head_y((float) grid_height / 2),
         score(0),
-        GuiObject(gui_objects) {}
+        GuiObject(gui_objects) {
+    occupied_squares = {{(int) head_x, int(head_y)}};
+  }
 
   void update() override;
 
@@ -32,7 +34,8 @@ class Snake : public GuiObject {
 
  private:
   void UpdateHead();
-  void UpdateBody(const SDL_Point &current_head_cell, const SDL_Point &prev_head_cell);
+  void update_tail();
+  void move_head(const SDL_Point &current_head_cell);
   void collision_check(const SDL_Point &new_head_position);
 
   int score{};
