@@ -27,8 +27,6 @@ class Snake : public GuiObject {
 
   Direction direction = Direction::kUp;
   bool alive{true};
-  float head_x; // todo should become private
-  float head_y;
   [[nodiscard]] int get_score() const { return score; };
   [[nodiscard]] int get_size() const { return size; }
 
@@ -38,6 +36,8 @@ class Snake : public GuiObject {
   void move_head(const SDL_Point &current_head_cell);
   void collision_check(const SDL_Point &new_head_position);
 
+  float head_x;
+  float head_y;
   int score{};
   int size{1};
   float speed{0.1f};

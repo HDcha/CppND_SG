@@ -72,8 +72,8 @@ void Renderer::Render(const Snake *snake) {
   }
 
   // Render snake's head
-  block.x = static_cast<int>(snake->head_x) * block.w;
-  block.y = static_cast<int>(snake->head_y) * block.h;
+  snake->occupied_squares.end()->x;
+  snake->occupied_squares.end()->y;
   if (snake->alive) {
     SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
   } else {
