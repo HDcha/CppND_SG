@@ -27,6 +27,7 @@ class Snake : public GuiObject {
 
   Direction direction = Direction::kUp;
   bool alive{true};
+
   [[nodiscard]] int get_score() const { return score; };
   [[nodiscard]] int get_size() const { return size; }
 

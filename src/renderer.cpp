@@ -2,13 +2,12 @@
 #include <iostream>
 #include <string>
 
-Renderer::Renderer(const size_t &screen_width,
-                   const size_t &screen_height,
-                   const size_t &grid_width, const size_t &grid_height)
+Renderer::Renderer(const size_t &screen_width, const size_t &screen_height, const size_t &grid_width, const size_t &grid_height, const size_t &kMsPerFrame)
     : screen_width(screen_width),
       screen_height(screen_height),
       grid_width(grid_width),
-      grid_height(grid_height) {
+      grid_height(grid_height),
+      kMsPerFrame(kMsPerFrame) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -30,6 +29,30 @@ Renderer::Renderer(const size_t &screen_width,
   if (nullptr == sdl_renderer) {
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
+  }
+
+  // set color for snake;
+  constexpr size_t no_colors = 50;
+  constexpr size_t len_color_cycle_ms = 3000;
+  dist_snake_colorchange_frames = len_color_cycle_ms / kMsPerFrame / no_colors;
+
+  for (size_t i = 0; i < no_colors; i++) {
+    float phase = (float) i * 3 / no_colors;
+    if (phase > 2)
+      color_palette_snake.emplace_back(std::array<uint8_t, 4>{(unsigned char) ((phase - 2) * 0xFF),
+                                                              (unsigned char) ((3 - phase) * 0xFF),
+                                                              0x00,
+                                                              0xFF});
+    else if (phase > 1)
+      color_palette_snake.emplace_back(std::array<uint8_t, 4>{0x00,
+                                                              (unsigned char) ((phase - 1) * 0xFF),
+                                                              (unsigned char) ((2 - phase) * 0xFF),
+                                                              0xFF});
+    else
+      color_palette_snake.emplace_back(std::array<uint8_t, 4>{(unsigned char) ((1 - phase) * 0xFF),
+                                                              0x00,
+                                                              (unsigned char) ((phase) *0xFF),
+                                                              0xFF});
   }
 }
 
@@ -64,8 +87,14 @@ void Renderer::Render(const v_p_gui_objects &gui_objects) {
 void Renderer::Render(const Snake *snake) {
 
   // Render snake's body
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+  if (snake_color_frame_count >= dist_snake_colorchange_frames * color_palette_snake.size()) snake_color_frame_count = 0;
+  std::cout << snake_color_frame_count << "\n";
+  auto color_offset = snake_color_frame_count / dist_snake_colorchange_frames;
+  auto color = color_palette_snake.rbegin() + (int) color_offset;
+
   for (SDL_Point const &point : snake->occupied_squares) {
+    SDL_SetRenderDrawColor(sdl_renderer, (*color)[0], (*color)[1], (*color)[2], (*color)[3]);
+    color = (++color == color_palette_snake.rend()) ? color_palette_snake.rbegin() : color;
     block.x = point.x * block.w;
     block.y = point.y * block.h;
     SDL_RenderFillRect(sdl_renderer, &block);
@@ -80,6 +109,7 @@ void Renderer::Render(const Snake *snake) {
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
   SDL_RenderFillRect(sdl_renderer, &block);
+  snake_color_frame_count++;
 }
 
 void Renderer::Render(const Food *food) {
