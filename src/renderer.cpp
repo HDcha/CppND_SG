@@ -88,7 +88,6 @@ void Renderer::Render(const Snake *snake) {
 
   // Render snake's body
   if (snake_color_frame_count >= dist_snake_colorchange_frames * color_palette_snake.size()) snake_color_frame_count = 0;
-  std::cout << snake_color_frame_count << "\n";
   auto color_offset = snake_color_frame_count / dist_snake_colorchange_frames;
   auto color = color_palette_snake.rbegin() + (int) color_offset;
 
