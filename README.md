@@ -34,7 +34,7 @@ Requirements:
   * ( ) The project demonstrates an understanding of C++ functions and control structures.
     A variety of control structures are used in the project.
     The project code is clearly organized into functions.
-    See [game.cpp](src/game.cpp), [renderer.cpp](src/renderer.cpp), [snake.cpp](src/snake.cpp)
+    See [game.cpp](src/game.cpp), [renderer.cpp](src/renderer.cpp)
 
   * ( ) The project reads data from a file and process the data, or the program writes data to a file.
     The project reads data from an external file or writes data to a file as part of the necessary operation of the
