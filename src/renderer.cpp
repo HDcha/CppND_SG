@@ -1,3 +1,8 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
+
 #include "renderer.h"
 #include "gui_objects/food.h"
 #include <iostream>

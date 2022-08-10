@@ -1,3 +1,7 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
 
 #ifndef RAINBOWSNAKEPROJECT_FOOD_H
 #define RAINBOWSNAKEPROJECT_FOOD_H

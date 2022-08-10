@@ -1,3 +1,8 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
+
 #ifndef RENDERER_H
 #define RENDERER_H
 

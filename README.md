@@ -25,6 +25,11 @@ Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-G
 3. Compile: `cmake .. && make`
 4. Run it: `./RainbowSnake`.
 
+## Overview of the code structure
+
+* [src/main.cpp](src/main.cpp): Calls an instance of game.
+  * [src/game.h](src/game.h): 
+
 ## Rubric Requirements
 
 * README (All Rubric Points REQUIRED)

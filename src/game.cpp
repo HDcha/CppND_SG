@@ -1,5 +1,11 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
+
 #include "game.h"
 #include "display_parameters.h"
+#include "frame.h"
 #include "gui_objects/barrier.h"
 #include "gui_objects/food.h"
 #include "gui_objects/gui_object.h"

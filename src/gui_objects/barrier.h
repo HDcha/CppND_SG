@@ -1,7 +1,8 @@
 ///
 /// @file
-/// @copyright Copyright (C) 2022, Bayerische Motoren Werke Aktiengesellschaft (BMW AG)
+/// @copyright Copyright (C) 2022, Christoph Haupt
 ///
+
 #ifndef RAINBOWSNAKEPROJECT_BARRIER_H
 #define RAINBOWSNAKEPROJECT_BARRIER_H
 

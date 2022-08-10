@@ -1,3 +1,8 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
+
 #ifndef SDL2TEST_DISPLAY_PARAMETERS_H
 #define SDL2TEST_DISPLAY_PARAMETERS_H
 

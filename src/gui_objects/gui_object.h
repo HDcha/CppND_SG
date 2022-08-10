@@ -8,6 +8,10 @@
 
 class GuiObject;
 using v_p_gui_objects = std::vector<std::unique_ptr<GuiObject>>;
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
 
 // abstract definition of an obect that will be rendered on screen
 class GuiObject {

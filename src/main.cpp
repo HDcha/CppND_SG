@@ -1,3 +1,8 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
+
 #include "game.h"
 #include <iostream>
 

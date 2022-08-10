@@ -1,3 +1,8 @@
+///
+/// @file
+/// @copyright Copyright (C) 2022, Christoph Haupt
+///
+
 #include "controller.h"
 #include "SDL.h"
 #include "gui_objects/snake.h"
