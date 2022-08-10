@@ -16,8 +16,9 @@ Game::Game() {
   gui_objects.emplace_back(std::move(snake_ptr));
 }
 
-void Game::Run(Renderer &&renderer) {
+void Game::Run() {
   bool running = true;
+  Renderer renderer;
   Frame frame(this, renderer);
 
   while (running) {

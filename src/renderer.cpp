@@ -2,11 +2,7 @@
 #include <iostream>
 #include <string>
 
-Renderer::Renderer(const size_t &screen_width, const size_t &screen_height, const size_t &grid_width, const size_t &grid_height, const size_t &kFramesPerSecond)
-    : screen_width(screen_width),
-      screen_height(screen_height),
-      grid_width(grid_width),
-      grid_height(grid_height) {
+Renderer::Renderer() {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -15,8 +11,8 @@ Renderer::Renderer(const size_t &screen_width, const size_t &screen_height, cons
 
   // Create Window
   sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
-                                SDL_WINDOWPOS_CENTERED, (int) screen_width,
-                                (int) screen_height, SDL_WINDOW_SHOWN);
+                                SDL_WINDOWPOS_CENTERED, (int) kScreenWidth,
+                                (int) kScreenHeight, SDL_WINDOW_SHOWN);
 
   if (nullptr == sdl_window) {
     std::cerr << "Window could not be created.\n";
@@ -38,8 +34,8 @@ Renderer::~Renderer() {
 
 void Renderer::Render(const v_p_gui_objects &gui_objects) {
 
-  block.w = (int) (screen_width / grid_width);
-  block.h = (int) (screen_height / grid_height);
+  block.w = (int) (kScreenWidth / kGridWidth);
+  block.h = (int) (kScreenHeight / kGridHeight);
 
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);

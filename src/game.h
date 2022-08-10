@@ -12,7 +12,7 @@
 class Game {
  public:
   Game();
-  void Run(Renderer &&renderer); // start the game cycle
+  void Run(); // start the game cycle
   [[nodiscard]] int GetScore() const;
   [[nodiscard]] int GetSize() const;
 

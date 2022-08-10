@@ -7,7 +7,7 @@
 
 class Renderer {
  public:
-  Renderer(const size_t &screen_width, const size_t &screen_height, const size_t &grid_width, const size_t &grid_height, const size_t &kMsPerFrame);
+  Renderer();
   ~Renderer();
 
   void Render(const v_p_gui_objects &gui_objects);
@@ -20,11 +20,6 @@ class Renderer {
   SDL_Rect block{};
   SDL_Window *sdl_window;
   SDL_Renderer *sdl_renderer;
-
-  const size_t screen_width; //todo remove copies of display parameters
-  const size_t screen_height;
-  const size_t grid_width;
-  const size_t grid_height;
 
   std::vector<std::array<uint8_t, 4>> color_palette_snake;
   int snake_color_frame_count = 0;
