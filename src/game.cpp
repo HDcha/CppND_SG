@@ -1,23 +1,24 @@
 #include "game.h"
 #include "gui_object.h"
+#include "display_parameters.h"
 #include <iostream>
 
-Game::Game(size_t grid_width, size_t grid_height) {
+Game::Game() {
   // add barrier
-  add_barriers_cage(grid_width, grid_height);
+  add_barriers_cage();
 
   // add food
-  gui_objects.emplace_back(std::make_unique<Food>(grid_width, grid_height, &this->gui_objects));
+  gui_objects.emplace_back(std::make_unique<Food>(kGridWidth, kGridHeight, &this->gui_objects));
 
   // add snake last, so it is rendered on top of everything else
-  auto snake_ptr = std::make_unique<Snake>((int) grid_width, (int) grid_height, &this->gui_objects);
+  auto snake_ptr = std::make_unique<Snake>((int) kGridWidth, (int) kGridHeight, &this->gui_objects);
   snake = snake_ptr.get();
   gui_objects.emplace_back(std::move(snake_ptr));
 }
 
-void Game::Run(Renderer &&renderer, size_t target_frame_duration) {
+void Game::Run(Renderer &&renderer) {
   bool running = true;
-  Frame frame(this, target_frame_duration, renderer);
+  Frame frame(this, renderer);
 
   while (running) {
     frame.start();
@@ -39,9 +40,9 @@ void Game::Update() {
 
 int Game::GetScore() const { return snake->get_score(); }
 int Game::GetSize() const { return snake->get_size(); }
-void Game::add_barriers_cage(const size_t &grid_width, const size_t &grid_height) {
-  gui_objects.emplace_back(std::make_unique<Barrier>(0, 0, 1, grid_width, &this->gui_objects));
-  gui_objects.emplace_back(std::make_unique<Barrier>(0, 0, grid_height, 1, &this->gui_objects));
-  gui_objects.emplace_back(std::make_unique<Barrier>(grid_height - 1, 0, grid_height, 1, &this->gui_objects));
-  gui_objects.emplace_back(std::make_unique<Barrier>(0, grid_height - 1, 1, grid_width, &this->gui_objects));
+void Game::add_barriers_cage() {
+  gui_objects.emplace_back(std::make_unique<Barrier>(0, 0, 1, kGridWidth, &this->gui_objects));
+  gui_objects.emplace_back(std::make_unique<Barrier>(0, 0, kGridHeight, 1, &this->gui_objects));
+  gui_objects.emplace_back(std::make_unique<Barrier>(kGridHeight - 1, 0, kGridHeight, 1, &this->gui_objects));
+  gui_objects.emplace_back(std::make_unique<Barrier>(0, kGridHeight - 1, 1, kGridWidth, &this->gui_objects));
 }

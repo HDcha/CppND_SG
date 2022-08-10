@@ -11,8 +11,8 @@
 
 class Game {
  public:
-  Game(size_t grid_width, size_t grid_height);
-  void Run(Renderer &&renderer, size_t target_frame_duration);
+  Game();
+  void Run(Renderer &&renderer); // start the game cycle
   [[nodiscard]] int GetScore() const;
   [[nodiscard]] int GetSize() const;
 
@@ -21,16 +21,21 @@ class Game {
   Snake *snake;
 
   void Update();
-  void add_barriers_cage(const size_t &grid_width, const size_t &grid_height);
+  void add_barriers_cage();
 };
 
 class Frame { //CHA
 
  public:
-  Frame(Game *game, const size_t &target_frame_duration, Renderer &renderer)
-      : game(game), target_frame_duration(target_frame_duration), renderer(renderer){};
-  void start() { frame_start = SDL_GetTicks(); };
-  void end() {
+  Frame(Game *game, Renderer &renderer)
+      : game(game),
+        renderer(renderer){};
+
+  void start() // save the current time
+  { frame_start = SDL_GetTicks(); };
+
+  void end() // modifies game title and waits until the frame has ended.
+  {
     // Keep track of how long each loop through the input/update/render cycle
     // takes.
     frame_count++;
@@ -47,8 +52,8 @@ class Frame { //CHA
     // If the time for this Frame is too small (i.e. frame_duration is
     // smaller than the target ms_per_frame), delay the loop to
     // achieve the correct Frame rate.
-    if (frame_duration < target_frame_duration) {
-      SDL_Delay(target_frame_duration - frame_duration);
+    if (frame_duration < kMsPerFrame) {
+      SDL_Delay(kMsPerFrame - frame_duration);
     }
   }
 
@@ -58,7 +63,6 @@ class Frame { //CHA
   Uint32 frame_end{};
   Uint32 frame_duration{};
   int frame_count = 0;
-  size_t target_frame_duration;
   Game *game;
   Renderer renderer;
 };
