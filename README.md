@@ -1,4 +1,4 @@
-# Submission Capstone Project
+# Rainbow Snake in a box
 
 Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-Game).
 
@@ -149,21 +149,6 @@ Requirements:
     * ( ) A condition variable is used in the project.
       A std::condition_variable is used in the project code to synchronize thread execution.
 
-# CPPND: Capstone Snake Game Example
-
-This is a starter repo for the Capstone project in
-the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this
-repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent
-StackOverflow post and set of responses.
-
-<img src="snake_game.gif"/>
-
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will
-become an important part of your portfolio to share with current and future colleagues and employers.
-
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have
-learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications
-using a wide range of C++ features.
 
 ## Dependencies for Running Locally
 
@@ -186,4 +171,4 @@ using a wide range of C++ features.
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./SnakeGame`.
+4. Run it: `./RainbowSnake`.
