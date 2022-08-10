@@ -31,7 +31,7 @@ Requirements:
 
 * Loops, Functions, I/O
 
-  * ( ) The project demonstrates an understanding of C++ functions and control structures.
+  * (x) The project demonstrates an understanding of C++ functions and control structures.
     A variety of control structures are used in the project.
     The project code is clearly organized into functions.
     See [game.cpp](src/game.cpp), [renderer.cpp](src/renderer.cpp)
@@ -46,47 +46,57 @@ Requirements:
 
 * Object Oriented Programming
 
-  * ( ) The project uses Object Oriented Programming techniques.
+  * (x) The project uses Object Oriented Programming tesize_tchniques.
     The project code is organized into classes with class attributes to hold the data, and class methods to perform
     tasks.
-    * [gui_objecct.h](src/gui_object.h), [snake.h](src/snake.h),  [game.h](src/game.h)
+    * [gui_object.h](src/gui_object.h): line 13
+    * [snake.h](src/snake.h): line 10
+    * [game.h](src/game.h): line 12
 
-  * ( ) Classes use appropriate access specifiers for class members.
+  * (x) Classes use appropriate access specifiers for class members.
     All class data members are explicitly specified as public, protected, or private.
-    * [gui_objecct.h](src/gui_object.h), [snake.h](src/snake.h)
+    * [gui_object.h](src/gui_object.h): line 13
+    * [snake.h](src/snake.h): line 10
+    * [game.h](src/game.h): line 12
 
-  * ( ) Class constructors utilize member initialization lists.
+  * (x) Class constructors utilize member initialization lists.
     All class members that are set to argument values are initialized through member initialization lists.
-    * [gui_objecct.h](src/gui_object.h), [snake.h](src/snake.h)
+    * [gui_object.h](src/gui_object.h): line 13
+    * [snake.h](src/snake.h): line 10
+    * [game.h](src/game.h): line 27
 
-  * ( ) Classes abstract implementation details from their interfaces.
+  * (x) Classes abstract implementation details from their interfaces.
     All class member functions document their effects, either through function names, comments, or formal documentation.
     Member functions do not change program state in undocumented ways.
-    * [gui_objecct.h](src/gui_object.h), [snake.h](src/snake.h), [renderer.h](src/renderer.h)
+    * [gui_object.h](src/gui_object.h): line 13
+    * [snake.h](src/snake.h): line 10
+    * [game.h](src/game.h): line 12
 
-  * ( ) Classes encapsulate behavior.
+  * (x) Classes encapsulate behavior.
     Appropriate data and functions are grouped into classes. Member data that is subject to an invariant is hidden from
     the user. State is accessed via member functions.
+    * [gui_object.h](src/gui_object.h): line 13
+    * [snake.h](src/snake.h): line 10
+    * [game.h](src/game.h): line 12
 
-  * ( ) Classes follow an appropriate inheritance hierarchy.
+  * (x) Classes follow an appropriate inheritance hierarchy.
     Inheritance hierarchies are logical. Composition is used instead of inheritance when appropriate. Abstract classes
     are composed of pure virtual functions. Override functions are specified.
-    * [gui_objecct.h](src/gui_object.h), [snake.h](src/snake.h)
+    * [gui_object.h](src/gui_object.h): line 13
+    * [snake.h](src/snake.h): line 10
 
-  * ( ) Overloaded functions allow the same function to operate on different parameters.
+  * (x) Overloaded functions allow the same function to operate on different parameters.
     One function is overloaded with different signatures for the same function name.
-    * [renderer.h](src/renderer.h) memberfundtion Renderer
+    * [renderer.h](src/renderer.h): lines 13-16
 
-  * ( ) Derived class functions override virtual base class functions.
+  * (x) Derived class functions override virtual base class functions.
     One member function in an inherited class overrides a virtual base class member function.
-    * [gui_objecct.h](src/gui_object.h), [snake.h](src/snake.h) (e.g. member function "update")
+    * [snake.h](src/snake.h): line 10
 
-  * ( ) Templates generalize functions in the project.
+  * (x) Templates generalize functions in the project.
     One function is declared with a template that allows it to accept a generic parameter.
+    * [snake.h](src/snake.h): line 10. Class Snake is a template.
 
-* Object Oriented Programming
-
-  * ( ) Templates generalize functions in the project.
 
 * Memory Management
 

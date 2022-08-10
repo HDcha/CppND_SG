@@ -10,10 +10,11 @@ template<int num_of_colors>
 class SnakeObj : public GuiObject {
 
  public:
-  enum class Direction { kUp,
-                         kDown,
-                         kLeft,
-                         kRight };
+  enum class Direction // from controller input
+  { kUp,
+    kDown,
+    kLeft,
+    kRight };
 
   SnakeObj(int grid_width, int grid_height, v_p_gui_objects *gui_objects)
       : grid_width(grid_width),
@@ -26,7 +27,8 @@ class SnakeObj : public GuiObject {
     set_color_palette<num_of_colors>();
   }
 
-  void update() override {
+  void update() override // set new position, color
+  {
     SDL_Point prev_cell{(int) (head_x), (int) (head_y)}; // We first capture the head's cell before updating.
     UpdateHead();
     SDL_Point current_cell{(int) (head_x), (int) (head_y)}; // Capture the head's cell after updating.
@@ -39,12 +41,14 @@ class SnakeObj : public GuiObject {
       move_head(current_cell);
     }
   }
+
   [[nodiscard]] int get_score() const { return score; };
+
   [[nodiscard]] int get_size() const { return size; }
 
   Direction direction = Direction::kUp;
   bool alive{true};
-  std::vector<std::array<uint8_t, 4>> color_palette;
+  std::vector<std::array<uint8_t, 4>> color_palette; // all colors that are used to draw the snake
 
  private:
   template<size_t no_colors>
@@ -130,6 +134,7 @@ class SnakeObj : public GuiObject {
   int grid_height;
 };
 
+// Explicit template instantiation with our parameters
 constexpr size_t len_color_cycle_s = 3;
 constexpr size_t no_colors = len_color_cycle_s * kFramesPerSecond;
 using Snake = SnakeObj<no_colors>;

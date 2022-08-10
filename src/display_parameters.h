@@ -2,7 +2,7 @@
 #define SDL2TEST_DISPLAY_PARAMETERS_H
 
 #include <iostream>
-
+// global variables for display functions
 constexpr size_t kFramesPerSecond{60};
 constexpr size_t kMsPerFrame{1000 / kFramesPerSecond};
 constexpr size_t kScreenWidth{640};
