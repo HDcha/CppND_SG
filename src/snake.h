@@ -16,7 +16,7 @@ class SnakeObj : public GuiObject {
     kLeft,
     kRight };
 
-  SnakeObj(int grid_width, int grid_height, v_p_gui_objects *gui_objects)
+  SnakeObj(const int &grid_width, const int &grid_height, v_p_gui_objects *gui_objects)
       : grid_width(grid_width),
         grid_height(grid_height),
         head_x((float) grid_width / 2),

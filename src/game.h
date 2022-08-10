@@ -24,7 +24,7 @@ class Game {
   void add_barriers_cage();
 };
 
-class Frame { //CHA
+class Frame {
 
  public:
   Frame(Game *game, Renderer &renderer)
