@@ -63,7 +63,6 @@ void Renderer::Render(const Snake *snake) {
 
   // Render snake's body
   if (snake_color_frame_count >= snake->color_palette.size()) snake_color_frame_count = 0;
-  std::cout << snake_color_frame_count << "\n";
   auto color = snake->color_palette.rbegin() + (int) snake_color_frame_count;
 
   for (SDL_Point const &point : snake->occupied_squares) {
