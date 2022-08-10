@@ -3,9 +3,9 @@
 
 #include "SDL.h"
 #include "controller.h"
-#include "gui_object.h"
+#include "gui_objects/gui_object.h"
+#include "gui_objects/snake.h"
 #include "renderer.h"
-#include "snake.h"
 #include <memory>
 #include <random>
 

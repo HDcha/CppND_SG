@@ -2,7 +2,8 @@
 #define RENDERER_H
 
 #include "SDL.h"
-#include "snake.h"
+#include "gui_objects/food.h"
+#include "gui_objects/snake.h"
 #include <vector>
 
 class Renderer {

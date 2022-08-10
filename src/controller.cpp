@@ -1,6 +1,6 @@
 #include "controller.h"
 #include "SDL.h"
-#include "snake.h"
+#include "gui_objects/snake.h"
 
 void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
                                  Snake::Direction opposite) {

@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "gui_objects/food.h"
 #include <iostream>
 #include <string>
 

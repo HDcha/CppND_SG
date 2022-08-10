@@ -3,7 +3,8 @@
 
 #include "SDL.h"
 #include "display_parameters.h"
-#include "gui_object.h"
+#include "gui_objects/food.h"
+#include "gui_objects/gui_object.h"
 #include <vector>
 
 template<int num_of_colors>
