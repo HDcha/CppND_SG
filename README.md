@@ -1,6 +1,14 @@
 # Rainbow Snake in a box
 
-Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-Game).
+Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-Game). Additionally, the snake is
+rendered
+in a rainbow animation and walls are added at the boundaries.
+
+Expected behaviour:
+
+* Controls and gameplay are the same as the base game.
+* The snake dies at the border of the screen.
+* The body of the snake has a smooth and colorful "wave-animation".
 
 ## Dependencies for Running Locally
 
@@ -27,20 +35,27 @@ Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-G
 
 ## Overview of the code structure
 
-* [src/main.cpp](src/main.cpp): Calls an instance of game.
-  * [src/game.h](src/game.h): 
+* [src/main.cpp](src/main.cpp): Calls an instance of game, and calls its member function run.
+    * [src/game.h](src/game.h): runs the infinite main game loop of input, update, render. Handles update in the main
+      game loop.
+        * [src/controller.h](src/controller.h): handles input in the main game loop.
+        * [src/renderer.h](src/renderer.h): handles rendering in the main game loop.
+        * [src/frame.h](src/frame.h): helper function for the main game loop.
+        * [src/display_parameters.h](src/display_parameters.h): constexpr global variables.
+        * [src](src/gui_objects): The folder contains all gui games objects. They are based on the abstract
+          class [src/gui_objects/gui_object.h](src/gui_objects/gui_object.h).
 
 ## Rubric Requirements
 
 * README (All Rubric Points REQUIRED)
 
-    * ( ) A README with instructions is included with the project
+    * (x) A README with instructions is included with the project.
       The README is included with the project and has instructions for building/running the project.
       If any additional libraries are needed to run the project, these are indicated with cross-platform installation
       instructions.
       You can submit your writeup as markdown or pdf.
 
-    * ( ) The README indicates which project is chosen.
+    * (x) The README indicates which project is chosen.
       The README describes the project you have built.
       The README also indicates the file and class structure, along with the expected behavior or output of the program.
 
@@ -52,7 +67,7 @@ Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-G
 
 * Compiling and Testing (All Rubric Points REQUIRED)
 
-    * ( ) The submission must compile and run.
+    * (x) The submission must compile and run.
       The project code must compile and run without errors.
       We strongly recommend using cmake and make, as provided in the starter repos. If you choose another build system,
       the code must compile on any reviewer platform.
@@ -63,7 +78,7 @@ Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-G
     * (x) The project demonstrates an understanding of C++ functions and control structures.
       A variety of control structures are used in the project.
       The project code is clearly organized into functions.
-      See [game.cpp](src/game.cpp), [renderer.cpp](src/renderer.cpp)
+        * All files, e.g.: [src/game.cpp](game.cpp), [renderer.cpp](src/renderer.cpp)
 
     * ( ) The project reads data from a file and process the data, or the program writes data to a file.
       The project reads data from an external file or writes data to a file as part of the necessary operation of the
@@ -75,67 +90,73 @@ Based on the [Snake game repo](https://github.com/udacity/CppND-Capstone-Snake-G
 
 * Object Oriented Programming
 
-    * (x) The project uses Object Oriented Programming tesize_tchniques.
+    * (x) The project uses Object Oriented Programming techniques.
       The project code is organized into classes with class attributes to hold the data, and class methods to perform
       tasks.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 13
-        * [snake.h](src/gui_objects/snake.h): line 10
-        * [game.h](src/game.h): line 12
+        * [gui_object.h](src/gui_objects/gui_object.h): line 17. Class GuiObject.
+        * [snake.h](src/gui_objects/snake.h): line 16. Class SnakeObj.
+        * [renderer.h](src/renderer.h): line 12. Class Renderer.
 
     * (x) Classes use appropriate access specifiers for class members.
       All class data members are explicitly specified as public, protected, or private.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 13
-        * [snake.h](src/gui_objects/snake.h): line 10
-        * [game.h](src/game.h): line 12
+        * [gui_object.h](src/gui_objects/gui_object.h): line 17. Class GuiObject.
+        * [snake.h](src/gui_objects/snake.h): line 16. Class SnakeObj.
+        * [renderer.h](src/renderer.h): line 12. Class Renderer.
 
     * (x) Class constructors utilize member initialization lists.
       All class members that are set to argument values are initialized through member initialization lists.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 13
-        * [snake.h](src/gui_objects/snake.h): line 10
-        * [game.h](src/game.h): line 27
+        * [gui_object.h](src/gui_objects/gui_object.h): line 21. Constructor of GuiObject.
+        * [snake.h](src/gui_objects/snake.h): line 25. Constructor of SnakeObj.
+        * [frame.h](src/frame.h): line 12. Constructor of Frame.
 
     * (x) Classes abstract implementation details from their interfaces.
       All class member functions document their effects, either through function names, comments, or formal
       documentation.
       Member functions do not change program state in undocumented ways.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 13
-        * [snake.h](src/gui_objects/snake.h): line 10
-        * [game.h](src/game.h): line 12
+        * [renderer.h](src/renderer.h): line 14. Class Renderer.
+        * [snake.h](src/gui_objects/snake.h): line 16. Class Snake.
+        * [game.h](src/game.h): line 17. Class Game.
 
     * (x) Classes encapsulate behavior.
       Appropriate data and functions are grouped into classes. Member data that is subject to an invariant is hidden
-      from
-      the user. State is accessed via member functions.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 13
-        * [snake.h](src/gui_objects/snake.h): line 10
-        * [game.h](src/game.h): line 12
+      from the user. State is accessed via member functions.
+        * [renderer.h](src/renderer.h): line 14. Class Renderer.
+        * [snake.h](src/gui_objects/snake.h): line 16. Class Snake.
+        * [game.h](src/game.h): line 17. Class Game.
 
     * (x) Classes follow an appropriate inheritance hierarchy.
       Inheritance hierarchies are logical. Composition is used instead of inheritance when appropriate. Abstract classes
       are composed of pure virtual functions. Override functions are specified.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 13
-        * [snake.h](src/gui_objects/snake.h): line 10
+        * [gui_object.h](src/gui_objects/gui_object.h): line 18. Abstract base class.
+        * [snake.h](src/gui_objects/snake.h): line 16. Class SnakeObj derived from GuiObject.
+        * [barrier.h](src/gui_objects/barrier.h): line 10. Class Barrier derived from GuiObject.
+        * [food.h](src/gui_objects/food.h): line 11. Class Food derived from GuiObject.
 
     * (x) Overloaded functions allow the same function to operate on different parameters.
       One function is overloaded with different signatures for the same function name.
-        * [renderer.h](src/renderer.h): lines 13-16
+        * [renderer.h](src/renderer.h): lines 19-22. Overloaded function Render.
 
     * (x) Derived class functions override virtual base class functions.
       One member function in an inherited class overrides a virtual base class member function.
-        * [snake.h](src/gui_objects/snake.h): line 10
+        * [gui_object.h](src/gui_objects/gui_object.h): line 23. Abstract base class defines virtual function update().
+        * [snake.h](src/gui_objects/snake.h): line 36. Class SnakeObj derived from GuiObject overrides the function
+          update().
+        * [barrier.h](src/gui_objects/barrier.h): line 19. Class Barrier derived from GuiObject overrides the function
+          update().
+        * [food.h](src/gui_objects/food.h): line 19. Class Food derived from GuiObject overrides the function update().
 
     * (x) Templates generalize functions in the project.
       One function is declared with a template that allows it to accept a generic parameter.
-        * [snake.h](src/gui_objects/snake.h): line 10. Snake is a templated class.
+        * [snake.h](src/gui_objects/snake.h): line 16. Snake is a templated class.
 
 
 * Memory Management
 
     * (x) The project makes use of references in function declarations.
       At least two variables are defined as references, or two functions use pass-by-reference in the project code.
-        * [game.cpp](src/game.cpp) lines 45-48. Passes reference to function.
-        * [renderer.h](src/renderer.h): lines 13-16. Ueses pass-by-const-reference.
-        * [game.h](src/game.h): line 30. Constructor of class "Frame" uses pass-by-reference.
+        * [game.cpp](src/game.cpp) lines 53-56. Passes reference to function.
+        * [renderer.h](src/renderer.h): lines 13-16. Uses pass-by-const-reference.
+        * [game.h](src/frame.h): line 12. Constructor of class "Frame" uses pass-by-reference.
 
     * ( ) The project uses destructors appropriately.
       At least one class that uses unmanaged dynamically allocated memory, along with any class that otherwise needs to

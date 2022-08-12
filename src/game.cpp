@@ -19,7 +19,7 @@ Game::Game() {
   gui_objects.emplace_back(std::make_unique<Food>(kGridWidth, kGridHeight, &this->gui_objects));
 
   // add snake last, so it is rendered on top of everything else
-  auto snake_ptr = std::make_unique<Snake>((int) kGridWidth, (int) kGridHeight, &this->gui_objects);
+  auto snake_ptr = std::make_unique<Snake>(&this->gui_objects);
   snake = snake_ptr.get();
   gui_objects.emplace_back(std::move(snake_ptr));
 }

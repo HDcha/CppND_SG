@@ -5,7 +5,9 @@
 
 #ifndef RAINBOWSNAKEPROJECT_FOOD_H
 #define RAINBOWSNAKEPROJECT_FOOD_H
+
 #include "gui_object.h"
+
 class Food : public GuiObject { //CHA
 
  public:

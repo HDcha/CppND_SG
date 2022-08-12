@@ -89,14 +89,13 @@ void Renderer::Render(const Snake *snake) {
 }
 
 void Renderer::Render(const Food *food) {
-  // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
   block.x = food->occupied_squares[0].x * block.w;
   block.y = food->occupied_squares[0].y * block.h;
   SDL_RenderFillRect(sdl_renderer, &block);
 }
 
-// Render obstacle
+// treat a non-specified gui-object as obstacle
 void Renderer::Render(const GuiObject *gui_object) {
   SDL_SetRenderDrawColor(sdl_renderer, 0x44, 0x44, 0x44, 0xFF);
   for (const auto &square : gui_object->occupied_squares) {

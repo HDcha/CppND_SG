@@ -7,11 +7,6 @@
 #include "SDL.h"
 #include "gui_objects/snake.h"
 
-void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
-                                 Snake::Direction opposite) {
-  if (snake.direction != opposite || snake.get_size() == 1) snake.direction = input;
-}
-
 void Controller::HandleInput(bool &running, Snake &snake) {
   SDL_Event e;
   while (SDL_PollEvent(&e)) {
@@ -20,23 +15,19 @@ void Controller::HandleInput(bool &running, Snake &snake) {
     } else if (e.type == SDL_KEYDOWN) {
       switch (e.key.keysym.sym) {
         case SDLK_UP:
-          ChangeDirection(snake, Snake::Direction::kUp,
-                          Snake::Direction::kDown);
+          snake.set_direction_if_possible(Snake::Direction::kUp);
           break;
 
         case SDLK_DOWN:
-          ChangeDirection(snake, Snake::Direction::kDown,
-                          Snake::Direction::kUp);
+          snake.set_direction_if_possible(Snake::Direction::kDown);
           break;
 
         case SDLK_LEFT:
-          ChangeDirection(snake, Snake::Direction::kLeft,
-                          Snake::Direction::kRight);
+          snake.set_direction_if_possible(Snake::Direction::kLeft);
           break;
 
         case SDLK_RIGHT:
-          ChangeDirection(snake, Snake::Direction::kRight,
-                          Snake::Direction::kLeft);
+          snake.set_direction_if_possible(Snake::Direction::kRight);
           break;
       }
     }

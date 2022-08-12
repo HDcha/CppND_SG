@@ -22,18 +22,16 @@ class SnakeObj : public GuiObject {
     kLeft,
     kRight };
 
-  SnakeObj(const int &grid_width, const int &grid_height, v_p_gui_objects *gui_objects)
-      : grid_width(grid_width),
-        grid_height(grid_height),
-        head_x((float) grid_width / 2),
-        head_y((float) grid_height / 2),
+  SnakeObj(v_p_gui_objects *gui_objects)
+      : head_x((float) kGridWidth / 2),
+        head_y((float) kGridHeight / 2),
         score(0),
         GuiObject(gui_objects) {
     occupied_squares = {{(int) head_x, int(head_y)}};
     set_color_palette<num_of_colors>();
   }
 
-  void update() override // set new position, color
+  void update() override // set new position accorging to the control input
   {
     SDL_Point prev_cell{(int) (head_x), (int) (head_y)}; // We first capture the head's cell before updating.
     UpdateHead();
@@ -52,8 +50,11 @@ class SnakeObj : public GuiObject {
 
   [[nodiscard]] int get_size() const { return size; }
 
-  Direction direction = Direction::kUp;
-  bool alive{true};
+  void set_direction_if_possible(const Direction &new_direction) {
+    if (new_direction != get_opposite(new_direction) || size == 1) direction = new_direction;
+  }
+
+  bool alive{true};                                  // game over if dead
   std::vector<std::array<uint8_t, 4>> color_palette; // all colors that are used to draw the snake
 
  private:
@@ -99,8 +100,8 @@ class SnakeObj : public GuiObject {
     }
 
     // Wrap the Snake around to the beginning if going off of the screen.
-    head_x = (float) fmod(head_x + (float) grid_width, grid_width);
-    head_y = (float) fmod(head_y + (float) grid_height, grid_height);
+    head_x = (float) fmod(head_x + (float) kGridWidth, kGridWidth);
+    head_y = (float) fmod(head_y + (float) kGridHeight, kGridHeight);
   }
 
   void update_tail() {
@@ -130,14 +131,22 @@ class SnakeObj : public GuiObject {
     }
   }
 
+  Direction get_opposite(const Direction new_direction) {
+    switch (new_direction) {
+      case Direction::kUp: return Direction::kDown;
+      case Direction::kDown: return Direction::kUp;
+      case Direction::kLeft: return Direction::kRight;
+      case Direction::kRight: return Direction::kLeft;
+    }
+  }
+
+  Direction direction = Direction::kUp;
   float head_x;
   float head_y;
   int score{};
   int size{1};
   float speed{0.1f};
   bool growing{false};
-  int grid_width;
-  int grid_height;
 };
 
 // Explicit template instantiation with our parameters
