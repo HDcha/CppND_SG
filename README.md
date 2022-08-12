@@ -80,12 +80,12 @@ Expected behaviour:
       The project code is clearly organized into functions.
         * All files, e.g.: [game.cpp](src/game.cpp), [renderer.cpp](src/renderer.cpp)
 
-    * ( ) The project reads data from a file and process the data, or the program writes data to a file.
+    * ( ) ~~The project reads data from a file and process the data, or the program writes data to a file.
       The project reads data from an external file or writes data to a file as part of the necessary operation of the
-      program.
+      program.~~
 
-    * ( ) The project accepts user input and processes the input.
-      The project accepts input from a user as part of the necessary operation of the program.
+    * ( ) ~~The project accepts user input and processes the input.
+      The project accepts input from a user as part of the necessary operation of the program.~~
 
 
 * Object Oriented Programming
@@ -158,9 +158,9 @@ Expected behaviour:
         * [renderer.h](src/renderer.h) line 19. Function uses pass-by-const-reference.
         * [game.h](src/frame.h): line 12. Constructor of class "Frame" uses pass-by-reference.
 
-    * ( ) The project uses destructors appropriately.
+    * ( ) ~~The project uses destructors appropriately.
       At least one class that uses unmanaged dynamically allocated memory, along with any class that otherwise needs to
-      modify state upon the termination of an object, uses a destructor.
+      modify state upon the termination of an object, uses a destructor.~~
 
     * (x) The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate.
       The project follows the Resource Acquisition Is Initialization pattern where appropriate, by allocating objects at
@@ -179,22 +179,22 @@ Expected behaviour:
       constructor, instead of copying the object.
         * [game.cpp](src/game.cpp) line 24. A unique pointer of snake is moved to the back of the vector.
 
-    * ( ) The project uses smart pointers instead of raw pointers.
+    * ( ) ~~The project uses smart pointers instead of raw pointers.
       The project uses at least one smart pointer: unique_ptr, shared_ptr, or weak_ptr. The project does not use raw
-      pointers.
+      pointers.~~
 
 
 * Concurrency
 
-    * ( ) The project uses multithreading.
-      The project uses multiple threads in the execution.
+    * ( ) ~~The project uses multithreading.
+      The project uses multiple threads in the execution.~~
 
-    * ( ) A promise and future is used in the project.
-      A promise and future is used to pass data from a worker thread to a parent thread in the project code.
+    * ( ) ~~A promise and future is used in the project.
+      A promise and future is used to pass data from a worker thread to a parent thread in the project code.~~
 
-    * ( ) A mutex or lock is used in the project.
+    * ( ) ~~A mutex or lock is used in the project.
       A mutex or lock (e.g. std::lock_guard or `std::unique_lock) is used to protect data that is shared across multiple
-      threads in the project code.
+      threads in the project code.~~
 
-    * ( ) A condition variable is used in the project.
-      A std::condition_variable is used in the project code to synchronize thread execution.
+    * ( ) ~~A condition variable is used in the project.
+      A std::condition_variable is used in the project code to synchronize thread execution.~~
