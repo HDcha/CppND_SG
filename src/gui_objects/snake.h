@@ -138,6 +138,7 @@ class SnakeObj : public GuiObject {
       case Direction::kLeft: return Direction::kRight;
       case Direction::kRight: return Direction::kLeft;
     }
+    throw std::runtime_error("Direction not recognized by Snake.h.");
   }
 
   Direction direction = Direction::kUp;
