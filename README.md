@@ -42,7 +42,7 @@ Expected behaviour:
         * [src/renderer.h](src/renderer.h): handles rendering in the main game loop.
         * [src/frame.h](src/frame.h): helper function for the main game loop.
         * [src/display_parameters.h](src/display_parameters.h): constexpr global variables.
-        * [src](src/gui_objects): The folder contains all gui games objects. They are based on the abstract
+        * [src/gui_objects](src/gui_objects): The folder contains all gui games objects. They are based on the abstract
           class [src/gui_objects/gui_object.h](src/gui_objects/gui_object.h).
 
 ## Rubric Requirements
@@ -59,7 +59,7 @@ Expected behaviour:
       The README describes the project you have built.
       The README also indicates the file and class structure, along with the expected behavior or output of the program.
 
-    * ( ) The README includes information about each rubric point addressed.
+    * (x) The README includes information about each rubric point addressed.
       The README indicates which rubric points are addressed. The README also indicates where in the code (i.e. files
       and
       line numbers) that the rubric points are addressed.
@@ -78,7 +78,7 @@ Expected behaviour:
     * (x) The project demonstrates an understanding of C++ functions and control structures.
       A variety of control structures are used in the project.
       The project code is clearly organized into functions.
-        * All files, e.g.: [src/game.cpp](game.cpp), [renderer.cpp](src/renderer.cpp)
+        * All files, e.g.: [game.cpp](src/game.cpp), [renderer.cpp](src/renderer.cpp)
 
     * ( ) The project reads data from a file and process the data, or the program writes data to a file.
       The project reads data from an external file or writes data to a file as part of the necessary operation of the
@@ -93,15 +93,15 @@ Expected behaviour:
     * (x) The project uses Object Oriented Programming techniques.
       The project code is organized into classes with class attributes to hold the data, and class methods to perform
       tasks.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 17. Class GuiObject.
+        * [gui_object.h](src/gui_objects/gui_object.h): line 18. Class GuiObject.
         * [snake.h](src/gui_objects/snake.h): line 16. Class SnakeObj.
-        * [renderer.h](src/renderer.h): line 12. Class Renderer.
+        * [renderer.h](src/renderer.h): line 14. Class Renderer.
 
     * (x) Classes use appropriate access specifiers for class members.
       All class data members are explicitly specified as public, protected, or private.
-        * [gui_object.h](src/gui_objects/gui_object.h): line 17. Class GuiObject.
+        * [gui_object.h](src/gui_objects/gui_object.h): line 18. Class GuiObject.
         * [snake.h](src/gui_objects/snake.h): line 16. Class SnakeObj.
-        * [renderer.h](src/renderer.h): line 12. Class Renderer.
+        * [renderer.h](src/renderer.h): line 14. Class Renderer.
 
     * (x) Class constructors utilize member initialization lists.
       All class members that are set to argument values are initialized through member initialization lists.
@@ -114,7 +114,7 @@ Expected behaviour:
       documentation.
       Member functions do not change program state in undocumented ways.
         * [renderer.h](src/renderer.h): line 14. Class Renderer.
-        * [snake.h](src/gui_objects/snake.h): line 16. Class Snake.
+        * [snake.h](src/gui_objects/snake.h): line 16. Class SnakeObj.
         * [game.h](src/game.h): line 17. Class Game.
 
     * (x) Classes encapsulate behavior.
@@ -154,8 +154,8 @@ Expected behaviour:
 
     * (x) The project makes use of references in function declarations.
       At least two variables are defined as references, or two functions use pass-by-reference in the project code.
-        * [game.cpp](src/game.cpp) lines 53-56. Passes reference to function.
-        * [renderer.h](src/renderer.h): lines 13-16. Uses pass-by-const-reference.
+        * [barrier.h](src/gui_objects/barrier.h) lines 11. Constructor uses pass-by-const-reference.
+        * [renderer.h](src/renderer.h) line 19. Function uses pass-by-const-reference.
         * [game.h](src/frame.h): line 12. Constructor of class "Frame" uses pass-by-reference.
 
     * ( ) The project uses destructors appropriately.
@@ -166,17 +166,18 @@ Expected behaviour:
       The project follows the Resource Acquisition Is Initialization pattern where appropriate, by allocating objects at
       compile-time, initializing objects when they are declared, and utilizing scope to ensure their automatic
       destruction.
-        * [game.cpp](src/game.cpp) lines 45-48. The barriers are initialized within unique pointers within a vector.
+        * [game.cpp](src/game.cpp) lines 53-56. The barriers are initialized within unique pointers within a vector.
           Thus the lifetime of those objects is governed by the same scope as the vector.
 
-    * ( ) The project follows the Rule of 5.
+    * (x) The project follows the Rule of 5.
       For all classes, if any one of the copy constructor, copy assignment operator, move constructor, move assignment
       operator, and destructor are defined, then all of these functions are defined.
+        * None of these functions is defined in any of the classes.
 
     * (x) The project uses move semantics to move data, instead of copying it, where possible.
       For classes with move constructors, the project returns objects of that class by value, and relies on the move
       constructor, instead of copying the object.
-        * [game.cpp](src/game.cpp) lines 16. A unique pointer of snake is moved to the back of the vector.
+        * [game.cpp](src/game.cpp) line 24. A unique pointer of snake is moved to the back of the vector.
 
     * ( ) The project uses smart pointers instead of raw pointers.
       The project uses at least one smart pointer: unique_ptr, shared_ptr, or weak_ptr. The project does not use raw
@@ -197,5 +198,3 @@ Expected behaviour:
 
     * ( ) A condition variable is used in the project.
       A std::condition_variable is used in the project code to synchronize thread execution.
-
-
